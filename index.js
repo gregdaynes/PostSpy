@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { parseArgs } from 'node:util';
 import dotenv from 'dotenv';
+import { join } from 'desm';
+import { readFile } from 'node:fs/promises';
 
 // load .env to process.env
 dotenv.config();
@@ -25,3 +27,8 @@ const { values, positionals } = parseArgs({
 const [filepath] = positionals;
 
 console.log('Hello world', { values, positionals, filepath, env: process.env });
+
+const fullPath = join(import.meta.url, filepath);
+const fileContents = JSON.parse((await readFile(fullPath)).toString());
+
+console.log(fileContents);
