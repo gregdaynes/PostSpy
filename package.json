@@ -1,20 +1,30 @@
 {
-  "name": "postspy",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gregdaynes/postspy.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/gregdaynes/postspy/issues"
-  },
-  "homepage": "https://github.com/gregdaynes/postspy#readme"
+	"name": "postspy",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"test": "eslint . && node --test --test-reporter spec",
+		"update": "npx npm-check-updates -i --format group"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gregdaynes/postspy.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/gregdaynes/postspy/issues"
+	},
+	"homepage": "https://github.com/gregdaynes/postspy#readme",
+	"devDependencies": {
+		"eslint": "^8.42.0",
+		"eslint-config-prettier": "^8.8.0",
+		"eslint-plugin-import": "^2.27.5",
+		"eslint-plugin-json": "^3.1.0",
+		"eslint-plugin-n": "^16.0.0",
+		"eslint-plugin-promise": "^6.1.1",
+		"prettier": "^2.8.8"
+	}
 }
