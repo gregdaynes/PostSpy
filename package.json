@@ -1,0 +1,19 @@
+{
+  "name": "postspy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gregdaynes/postspy.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gregdaynes/postspy/issues"
+  },
+  "homepage": "https://github.com/gregdaynes/postspy#readme"
+}
