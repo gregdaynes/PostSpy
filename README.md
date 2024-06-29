@@ -1,45 +1,53 @@
-<h1 align="center">Welcome to PostSpy 👋</h1>
-<p>
-  <a href="https://github.com/gregdaynes/PostSpy/blob/main/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/badge/License-ISC-yellow.svg" />
-  </a>
-</p>
+PostSpy.dev
+===========
 
-> Needs description
+PostSpy is a small, fast web application providing a gui for running http requests.
 
-### 🏠 [Homepage](https://postspy.dev)
 
-## Install
+Features
+--------
+
+
+### File based workflows
+
+Requests are JSONC files, which declare the request dta, organized into subfolders.
+
+Configuration for PostSpy is done in package.json to not clutter up the project directory.
+
+Request files stored in the host project are intended to be part of your git workflows, allowing for sharing and versioning with the application code.
+
+PostSpy gui manages the files in the folder. Creating a new request in the ui, creates a new file on disk.
+- You can also manually create the file, and it will appear in postspy.
+
+
+### Web GUI
+
+Locally run PostSpy runs a small fastify webserver.
+
+The UI is HTML + CSS with dashes of javascript where required.
+
+The UI does not need to be a SPA
+
+
+### Request Inspector
+
+PostSpy is also an endpoint inspector. Send a request to the inspector endpoint and it will display information recevied. No more sending test json to a random site on the internet to inspect.
+
+
+Installation
+------------
+
+Add the package to your project
 
 ```sh
-npm install -g postspy
+# TODO
+npm install --save-dev postspy
 ```
 
-## Usage
+Initialize with configuration
 
 ```sh
-ps path/to/file
+# TODO
+npx postspy init
 ```
 
-## Run tests
-
-```sh
-npm test
-```
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/gregdaynes/PostSpy/issues). You can also take a look at the [contributing guide](https://github.com/gregdaynes/PostSpy/blob/main/code-of-conduct.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2023 [Gregory Daynes](https://github.com/gregdaynes).<br />
-This project is [ISC](https://github.com/gregdaynes/PostSpy/blob/main/LICENSE) licensed.
-
----
-
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
