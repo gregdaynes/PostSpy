@@ -12,6 +12,6 @@ export default fp(async function app (fastify, opts) {
   })
 
   fastify.get('/', async (request, reply) => {
-    return reply.view('index.njk', { text: 'Hello, world!' })
+    return reply.render('index.njk', { text: 'Hello, world!' })
   })
 })
