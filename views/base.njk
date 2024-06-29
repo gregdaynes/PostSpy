@@ -4,6 +4,8 @@
 	<link href="/assets/style.css" rel="stylesheet" />
 </head>
 <body>
-	{% block content %}{% endblock %}
+	{% include "ps-sidebar.njk" %}
+	{% include "ps-editor.njk" %}
+	{% include "ps-viewer.njk" %}
 </body>
 </html>
