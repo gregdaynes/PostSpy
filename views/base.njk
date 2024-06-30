@@ -4,8 +4,12 @@
 	<link href="/assets/style.css" rel="stylesheet" />
 </head>
 <body>
-	{% include "ps-sidebar.njk" %}
-	{% include "ps-editor.njk" %}
-	{% include "ps-viewer.njk" %}
+	{% include "ps-alert.njk" %}
+
+	<main>
+		{% include "ps-sidebar.njk" %}
+		{% include "ps-editor.njk" %}
+		{% include "ps-viewer.njk" %}
+	</main>
 </body>
 </html>

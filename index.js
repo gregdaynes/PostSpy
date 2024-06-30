@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import fp from 'fastify-plugin'
 import AutoLoad from '@fastify/autoload'
+import S from 'fluent-json-schema'
 
 export default fp(async function app (fastify, opts) {
   await fastify.register(import('./plugins/config.no-load.js'), structuredClone(opts))
@@ -13,5 +14,21 @@ export default fp(async function app (fastify, opts) {
 
   fastify.get('/', async (request, reply) => {
     return reply.render('index.njk')
+  })
+
+  fastify.get('/request/:fingerprint', {
+    schema: {
+      params: S.object()
+        .prop('fingerprint', S.string().format('uuid')),
+    },
+  },
+  async (request, reply) => {
+    const file = fastify.fileIndex[request.params.fingerprint]
+
+    if (!file) {
+      return reply.render('404.njk', { file: request.params.fingerprint, message: 'not found' })
+    }
+
+    return reply.render('file.njk', { file })
   })
 })

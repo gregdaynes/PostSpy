@@ -31,7 +31,7 @@ body {
  * Objects / Layout
  */
 
-body {
+main {
 	display: grid;
 	grid-template-columns: 1fr 2fr 2fr;
 	height: 100dvh;
@@ -68,6 +68,12 @@ ps-editor-header {
 ps-viewer {
 	display: flex;
 	flex-direction: column;
+}
+
+ps-alert {
+	display: block;
+	background-color: red;
+	text-align: center;
 }
 
 

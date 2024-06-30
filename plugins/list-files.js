@@ -11,6 +11,10 @@ export default fp(
       const filesFingerPrinted = fastify.fingerPrint(filesStripped)
       const fileTree = fastify.fileListToTree(filesFingerPrinted)
       fastify.decorate('fileTree', fileTree)
+      fastify.decorate('fileIndex', filesFingerPrinted.reduce((acc, [path, fingerprint]) => {
+        acc[fingerprint] = path
+        return acc
+      }, {}))
     })
 
     fastify.addHook('preHandler', function (request, reply, done) {

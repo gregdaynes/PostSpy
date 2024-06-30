@@ -9,7 +9,7 @@
 					{% endfor %}
 			</ul>
 			{% else %}
-				<a href="#----not-implemented---{{ item.fingerprint }}">{{ item.name }}</a>
+				<a href="/request/{{ item.fingerprint }}">{{ item.name }}</a>
 			{% endif %}
 	</li>
 	{% endmacro %}
