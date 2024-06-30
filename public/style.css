@@ -3,7 +3,37 @@
  */
 
 :root {
+	--color-gray-100: #f8f9fa;
+	--color-gray-200: #e9ecef;
+	--color-gray-300: #dee2e6;
+	--color-gray-400: #ced4da;
+	--color-gray-500: #adb5bd;
+	--color-gray-600: #6c757d;
+	--color-gray-700: #495057;
+	--color-gray-800: #343a40;
+	--color-gray-900: #212529;
 
+	--spacing-25: 0.25rem;
+	--spacing-50: 0.5rem;
+	--spacing-100: 1rem;
+	--spacing-125: 1.25rem;
+	--spacing-150: 1.5rem;
+	--spacing-150: 1.75rem;
+	--spacing-200: 2rem;
+
+	--radius-25: 0.25rem;
+	--radius-50: 0.5rem;
+	--radius-100: 1rem;
+
+	--font-size-90: 0.9rem;
+	--font-size-100: 1rem;
+	--font-size-125: 1.25rem;
+	--font-size-200: 2rem;
+
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-bold: 700;
+	--font-weight-heavy: 800;
 }
 
 
@@ -11,8 +41,17 @@
  * Reset
  */
 
-*, *::before, *::after {
-	box-sizing: border-box;
+
+* {
+	font-weight: var(--font-weight-normal);
+
+	&, &::before, &::after {
+		box-sizing: border-box;
+	}
+}
+
+html {
+	font-size: 16px;
 }
 
 body {
@@ -33,11 +72,33 @@ body {
 
 main {
 	display: grid;
-	grid-template-columns: 1fr 2fr 2fr;
 	height: 100dvh;
 
-	> * {
-		outline: 1px solid red;
+	grid-template-columns: 20% 80%;
+	grid-auto-rows: 50%;
+
+	@media screen and (min-width: 1024px) {
+		grid-template-columns: 20% 40% 40%;
+		grid-auto-rows: unset;
+	}
+
+	ps-sidebar {
+		grid-row: span 1 / 2;
+	}
+
+	ps-editor {
+		grid-row: 1;
+		grid-column: 2;
+	}
+
+	ps-viewer {
+		grid-row: 2;
+		grid-column: 2;
+
+		@media screen and (min-width: 1024px) {
+			grid-row: 1;
+			grid-column: 3;
+		}
 	}
 }
 
@@ -45,30 +106,6 @@ main {
 /**
  * Components
  */
-
-ps-sidebar {
-	background-color: #f0f0f0;
-}
-
-ps-logo {
-	h1 {
-		margin: 0;
-	}
-}
-
-ps-editor {
-	display: flex;
-	flex-direction: column;
-}
-
-ps-editor-header {
-
-}
-
-ps-viewer {
-	display: flex;
-	flex-direction: column;
-}
 
 ps-alert {
 	display: block;

@@ -10,6 +10,7 @@ export default fp(
       const filesStripped = fastify.stripCommonPath(files)
       const filesFingerPrinted = fastify.fingerPrint(filesStripped)
       const fileTree = fastify.fileListToTree(filesFingerPrinted)
+
       fastify.decorate('fileTree', fileTree)
       fastify.decorate('fileIndex', filesFingerPrinted.reduce((acc, [path, fingerprint]) => {
         acc[fingerprint] = path
@@ -50,7 +51,7 @@ export default fp(
     fastify.decorate('stripCommonPath', function (files) {
       const dirPath = fastify.config.dirPath
 
-      return files.map(file => file.replace(path.join(import.meta.dirname, dirPath), ''))
+      return files.map(file => file.replace(path.join(import.meta.dirname, dirPath, '/'), ''))
     })
 
     fastify.decorate('fingerPrint', function (files) {

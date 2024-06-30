@@ -1,15 +1,54 @@
+<style>
+ps-viewer {
+	display: flex;
+	box-shadow: 0 0px 0 1px var(--color-gray-200);
+	padding: var(--spacing-150);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--color-gray-200);
+	border-radius: var(--radius-100);
+	flex: 1;
+}
+
+ps-viewer-main {
+	flex: 1;
+	position: relative;
+	flex-direction: column;
+	display: flex;
+}
+
+#viewer-headers,
+#viewer-body {
+	flex: 1;
+	font-size: var(--font-size-125);
+}
+</style>
+
 <ps-viewer>
-	<ps-viewer-header>
-		Viewer Header
-
-		<ul>
-			<li>{{ response.statusCode }}</li>
-			<li>{{ response.headers | dump }}</li>
-		</ul>
-	</ps-viewer-header>
-
-	<ps-viewer-main>
-		Viewer main
-		{{ response.body }}
-	</ps-viewer-main>
+	<div class="container">
+		<ps-viewer-main>
+			<div id="viewer-headers">{{ response.headers }}</div>
+			<div id="viewer-body">{{ response.body }}</div>
+		</ps-viewer-main>
+	</div>
 </ps-viewer>
+
+<script type="module">
+	import aceBuilds from 'https://cdn.jsdelivr.net/npm/ace-builds@1.35.1/+esm'
+
+	const headers = aceBuilds.edit("viewer-headers", {
+		mode: "ace/mode/json",
+		theme: "ace/theme/monokai",
+		selectionStyle: "text",
+	});
+
+	const body = aceBuilds.edit("viewer-body", {
+		mode: "ace/mode/json",
+		theme: "ace/theme/monokai",
+		selectionStyle: "text",
+	});
+</script>
+

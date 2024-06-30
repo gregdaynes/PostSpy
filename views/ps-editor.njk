@@ -1,13 +1,47 @@
+<style>
+ps-editor {
+	display: flex;
+	box-shadow: 0 0px 0 1px var(--color-gray-200);
+	padding: var(--spacing-150);
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid var(--color-gray-200);
+	border-radius: var(--radius-100);
+	flex: 1;
+}
+
+ps-editor-main {
+	flex: 1;
+	position: relative;
+}
+
+#editor {
+	position: absolute;
+	inset: 0;
+	font-size: var(--font-size-125);
+}
+</style>
+
 <ps-editor>
-	<ps-editor-header>
-		{{ file }}
+	<div class="container">
+		{% include "ps-editor-header.njk" %}
 
-		{% include "ps-editor-run.njk" %}
-	</ps-editor-header>
-
-	<hr>
-
-	<ps-editor-main>
-		{{ fileContents | dump }}
-	</ps-editor-main>
+		<ps-editor-main>
+			<div id="editor">{{ fileContents }}</div>
+		</ps-editor-main>
+	</div>
 </ps-editor>
+
+<script type="module">
+	import aceBuilds from 'https://cdn.jsdelivr.net/npm/ace-builds@1.35.1/+esm'
+
+	const editor = aceBuilds.edit("editor", {
+		mode: "ace/mode/json",
+		theme: "ace/theme/monokai",
+		selectionStyle: "text",
+	});
+</script>
+

@@ -21,7 +21,7 @@ export default fp(async function app (fastify, opts) {
   fastify.get('/request/:fingerprint', {
     schema: {
       params: S.object()
-        .prop('fingerprint', S.string().format('uuid')),
+        .prop('fingerprint', S.string()),
     },
   },
   async (request, reply) => {
@@ -34,7 +34,7 @@ export default fp(async function app (fastify, opts) {
     // get the file contents
 
     const fullPath = join(import.meta.dirname, fastify.config.dirPath, file)
-    const fileContents = JSON.parse((await readFile(fullPath)).toString())
+    const fileContents = JSON.stringify(JSON.parse((await readFile(fullPath)).toString()), null, 2)
 
     return reply.render('file.njk', { file, fileContents, fingerprint: request.params.fingerprint })
   })
@@ -44,7 +44,7 @@ export default fp(async function app (fastify, opts) {
   fastify.post('/request/:fingerprint', {
     schema: {
       params: S.object()
-        .prop('fingerprint', S.string().format('uuid')),
+        .prop('fingerprint', S.string()),
     },
   },
   async (request, reply) => {
@@ -63,6 +63,7 @@ export default fp(async function app (fastify, opts) {
       method: '',
       url: '',
       maxRedirects: 0,
+      responseFormat: 'json',
     }
 
     requestConfig.method = fileContents.method
@@ -91,15 +92,16 @@ export default fp(async function app (fastify, opts) {
       }
     )
 
-    let bodyData
+    let bodyData = ''
     for await (const data of body) {
-      bodyData = data.toString()
+      bodyData += data.toString()
     }
 
     if (requestConfig.responseFormat) {
       switch (requestConfig.responseFormat) {
         case 'json':
           try {
+            console.log('test')
             bodyData = JSON.parse(bodyData)
           } catch (err) {
             console.error(err)
@@ -108,6 +110,16 @@ export default fp(async function app (fastify, opts) {
       }
     }
 
-    return reply.render('file.njk', { file, fileContents, fingerprint: request.params.fingerprint, response: { statusCode, headers, body: bodyData, trailers } })
+    return reply.render('file.njk', {
+      file,
+      fileContents: JSON.stringify(fileContents, null, 2),
+      fingerprint: request.params.fingerprint,
+      response: {
+        statusCode,
+        headers: JSON.stringify(headers, null, 2),
+        body: bodyData,
+        trailers,
+      },
+    })
   })
 })
