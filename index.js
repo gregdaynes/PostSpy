@@ -1,3 +1,4 @@
+import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import fp from 'fastify-plugin'
 import AutoLoad from '@fastify/autoload'
@@ -29,6 +30,11 @@ export default fp(async function app (fastify, opts) {
       return reply.render('404.njk', { file: request.params.fingerprint, message: 'not found' })
     }
 
-    return reply.render('file.njk', { file })
+    // get the file contents
+
+    const fullPath = join(import.meta.dirname, fastify.config.dirPath, file)
+    const fileContents = JSON.parse((await readFile(fullPath)).toString())
+
+    return reply.render('file.njk', { file, fileContents })
   })
 })
