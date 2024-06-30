@@ -4,17 +4,11 @@ import nunjucks from 'nunjucks'
 
 export default fp(
   async function pluginView (fastify, _opts) {
-    console.log(fastify.fileTree)
-
     fastify.register(fastifyView, {
       engine: { nunjucks },
       templates: ['views'],
       viewExt: 'njk',
       propertyName: 'render',
-      defaultContext: {
-        flash: [],
-        scripts: [],
-      },
     })
   },
   {

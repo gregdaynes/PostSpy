@@ -1,4 +1,26 @@
 <ps-filetree>
-	{{ fileTree | dump }}
-	{{ text }}
+	{% macro menuItem(item) %}
+	<li>
+			{% if item.children.length %}
+				<span>{{ item.name }}</span>
+			<ul>
+					{% for item in item.children %}
+					{{ menuItem(item) }}
+					{% endfor %}
+			</ul>
+			{% else %}
+				<a href="#----not-implemented---{{ item.fingerprint }}">{{ item.name }}</a>
+			{% endif %}
+	</li>
+	{% endmacro %}
+
+	<menu>
+			<h2>Requests</h2>
+
+			<ul>
+					{% for item in fileTree %}
+					{{ menuItem(item) }}
+					{% endfor %}
+			</ul>
+	</menu>
 </ps-filetree>
