@@ -1,9 +1,15 @@
 <ps-viewer>
 	<ps-viewer-header>
 		Viewer Header
+
+		<ul>
+			<li>{{ response.statusCode }}</li>
+			<li>{{ response.headers | dump }}</li>
+		</ul>
 	</ps-viewer-header>
 
 	<ps-viewer-main>
 		Viewer main
+		{{ response.body }}
 	</ps-viewer-main>
 </ps-viewer>

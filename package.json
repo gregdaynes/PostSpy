@@ -25,6 +25,7 @@
 	},
 	"dependencies": {
 		"@fastify/autoload": "^5.10.0",
+		"@fastify/formbody": "^7.4.0",
 		"@fastify/static": "^7.0.4",
 		"@fastify/view": "^9.1.0",
 		"fastify": "^4.28.1",
@@ -32,6 +33,7 @@
 		"fluent-json-schema": "^4.2.1",
 		"jsonc-parser": "^3.3.1",
 		"nunjucks": "^3.2.4",
+		"undici": "^6.19.2",
 		"uuid": "^10.0.0"
 	}
 }
